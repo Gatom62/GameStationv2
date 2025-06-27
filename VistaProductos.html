@@ -57,44 +57,15 @@
             <button class="btn btn-category m-2">Actuales</button>
         </div>
 
+        <!-- Reemplaza la sección de "Populares" con esto -->
         <div class="section mb-4">
-            <h4 class="section-title">Populares</h4>
+            <h4 class="section-title">Productos Destacados</h4>
             <br>
-            <div class="row row-cols-2 row-cols-md-4 g-3">
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="Img/Death.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Playstation 5<br><strong>$50.00</strong><br>DEATH STRANDING</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="Img/Pou.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Playstation 5<br><strong>$50.00</strong><br>DEATH STRANDING</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="Img/Doom.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Playstation 5<br><strong>$50.00</strong><br>DEATH STRANDING</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="Img/Tetris.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Playstation 5<br><strong>$50.00</strong><br>DEATH STRANDING</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="row row-cols-2 row-cols-md-4 g-3" id="productos-api">
+                <!-- Los productos de la API se cargarán aquí -->
             </div>
         </div>
+
         <br>
         <div class="section mb-4">
             <h4 class="section-title">Consolas</h4>
@@ -153,44 +124,6 @@
             </div>
         </div>
         <br>
-        <div class="section mb-4">
-            <h4 class="section-title">Consolas</h4>
-            <br>
-            <div class="row row-cols-2 row-cols-md-4 g-3">
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="Img/Switch.webp" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Actuales<br>Nintendo Switch<br><strong>$440.00</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="Img/PS1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">De antaño<br>PlayStation 1<br><strong>$80.00</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="Img/PS4.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Actuales<br>PlayStation 4<br><strong>$385.00</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="Img/PS5.webp" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Actuales<br>PlayStation 5<br><strong>$800.00</strong><br></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <br>
         <div class="section mb-4">
             <h4 class="section-title">Gratis</h4>
@@ -230,6 +163,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="cards-container" class="cards-grid">
+        <!-- Aquí se inyectan las tarjetas usando JS -->
     </div>
 
     <footer class="footer text-center text-white">
