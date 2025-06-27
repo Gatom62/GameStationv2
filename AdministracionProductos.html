@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamesTation - AdminisrtarProductos</title>
+    <link rel="stylesheet" href="css/AdministracionProductos.css">
+    <link rel="stylesheet" href="css/VistaProductos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="shortcut icon" href="Img/iconoGameStation.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark px-4">
+        <a class="navbar-brand" href="#"> <strong style="font-size: 2rem"><img src="Img/Logo.png" alt="Logo" style="width: 50px;"></strong></a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="VistaProductos.html">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link active" href="AdministracionProductos.html">Administración</a></li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Busca algo" aria-label="Buscar">
+            </form>
+        </div>
+    </nav>
+    </header>
+    <br>
+    <main class="tabla_container">
+
+        <h2>Listado de productos</h2>
+
+        <div class="tabla_scroll">
+            <!--Tabla de integrantes-->
+            <table id="tabla" class="overflow-auto table table-striped table-hover">
+                <!--(overflow-auto) si la pantalla es muy pequeña, hara que la tabla le salga un scroll-->
+                <thead>
+                    <!--"tr" Table Row es una fila-->
+                    <tr>
+                        <!--"th" Table Row es una columna-->
+                        <th>Imagen</th>
+                        <th>Producto</th>
+                        <th>Descuento</th>
+                        <th>Stock</th>
+                        <th>Precio</th>
+                        <th>Acciones</th> <!--Botones para editar y eliminar-->
+                    </tr>
+                </thead>
+
+                <!--Aqui van los registros que lleguen por la API-->
+                <tbody id="productos-tbody">
+
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <!-- Modal de agregar-->
+    <div id="mdAgregar" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <!-- Header del modal -->
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="staticBackdropLabel">
+                        <i class="bi bi-bag-plus"></i> Agregar Producto
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+
+                <!-- Cuerpo del modal -->
+                <div class="modal-body">
+                    <form id="fmAgregar">
+                        <div class="row g-3">
+                            <!-- Sección de imagen -->
+                            <div class="col-12">
+                                <div class="image-upload-container">
+                                    <!-- Imagen del producto (vista previa) -->
+                                    <img id="productImage"
+                                        src="https://via.placeholder.com/300x200?text=Imagen+del+producto"
+                                        alt="Imagen del producto" class="img-thumbnail mb-3"
+                                        style="max-width: 100%; height: 200px; object-fit: cover; display: block;">
+
+                                    <!-- Input para cargar la imagen -->
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="productImageUpload" accept="image/*"
+                                            aria-label="Subir imagen del producto" required>
+                                        <button class="btn btn-outline-secondary" type="button" id="clearImageBtn">
+                                            <i class="bi bi-x-circle"></i> Limpiar
+                                        </button>
+                                    </div>
+
+                                    <!-- Mensajes de validación -->
+                                    <div class="mt-2">
+                                        <small id="imageHelp" class="form-text text-muted">
+                                            Formatos: JPG, PNG, GIF. Tamaño máximo: 2MB.
+                                        </small>
+                                        <div id="imageError" class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Campos del formulario -->
+                            <div class="col-md-6">
+                                <label for="txtProducto" class="form-label">Nombre del Producto</label>
+                                <input type="text" id="txtProducto" class="form-control form-control-lg"
+                                    placeholder="Ingrese el nombre del producto" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="txtPrecio" class="form-label">Precio ($)</label>
+                                <input type="number" id="txtPrecio" class="form-control form-control-lg"
+                                    placeholder="0.00" step="0.01" min="0" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="txtStock" class="form-label">Cantidad en Stock</label>
+                                <input type="number" id="txtStock" class="form-control form-control-lg" placeholder="0"
+                                    min="0" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="txtDescuento" class="form-label">Descuento (%)</label>
+                                <input type="number" id="txtDescuento" class="form-control form-control-lg"
+                                    placeholder="0" min="0" max="100" step="1">
+                            </div>
+                        </div>
+
+                        <!-- Footer del modal -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle"></i> Cancelar
+                            </button>
+                            <button type="submit" form="fmAgregar" class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i> Agregar Producto
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal de editar-->
+    <div id="mdEditar" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <!-- Header del modal -->
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="staticBackdropLabel">
+                        <i class="bi bi-bag-plus"></i> Editar Producto
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+
+                <!-- Cuerpo del modal -->
+                <div class="modal-body">
+                    <form id="fmEditar">
+                        <div class="row g-3">
+                            <!-- Sección de imagen -->
+                            <div class="col-12">
+                                <div class="image-upload-container">
+                                    <!-- Imagen del producto (vista previa) -->
+                                    <img id="productImage"
+                                        src="https://via.placeholder.com/300x200?text=Imagen+del+producto"
+                                        alt="Imagen del producto" class="img-thumbnail mb-3"
+                                        style="max-width: 100%; height: 200px; object-fit: cover; display: block;">
+
+                                    <!-- Input para cargar la imagen -->
+                                    <div class="input-group">
+                                        <input type="file" id="productImageUploadEditar" accept="image/*"
+                                            class="form-control" aria-label="Subir imagen del producto">
+                                        <button class="btn btn-outline-secondary" type="button" id="clearImageBtn">
+                                            <i class="bi bi-x-circle"></i> Limpiar
+                                        </button>
+                                    </div>
+
+                                    <!-- Mensajes de validación -->
+                                    <div class="mt-2">
+                                        <small id="imageHelp" class="form-text text-muted">
+                                            Formatos: JPG, PNG, GIF. Tamaño máximo: 2MB.
+                                        </small>
+                                        <div id="imageError" class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Campos del formulario -->
+                            <input type="hidden" id="txtIdEditar">
+                            <div class="col-md-6">
+                                <label for="txtNombreEditar" class="form-label">Nombre del Producto</label>
+                                <input type="text" id="txtNombreEditar" class="form-control form-control-lg"
+                                    placeholder="Ingrese el nombre del producto" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="txtPrecioEditar" class="form-label">Precio ($)</label>
+                                <input type="number" id="txtPrecioEditar" class="form-control form-control-lg"
+                                    placeholder="0.00" step="0.01" min="0" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="txtStockEditar" class="form-label">Cantidad en Stock</label>
+                                <input type="number" id="txtStockEditar" class="form-control form-control-lg"
+                                    placeholder="0" min="0" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="txtDescuentoEditar" class="form-label">Descuento (%)</label>
+                                <input type="number" id="txtDescuentoEditar" class="form-control form-control-lg"
+                                    placeholder="0" min="0" max="100" step="1">
+                            </div>
+                        </div>
+
+                        <!-- Footer del modal -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle"></i> Cancelar
+                            </button>
+                            <button type="submit" form="fmEditar" class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i> Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <button id="btnAgregar" class="btnAgregar" data-bs-toggle="modal" data-bs-target="#mdAgregar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle"
+            viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+            <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+        </svg>
+    </button>
+
+    <footer class="footer text-center text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col"><strong>Inicio</strong></div>
+                <div class="col"><strong>Nosotros</strong></div>
+                <div class="col"><strong>Productos</strong></div>
+                <div class="col"><strong>PlayStationPlus</strong></div>
+            </div>
+            <br>
+            <small class="d-block mt-2">Aviso de privacidad - Políticas de crédito</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/AdministracionProductos.js"></script>
+</body>
+
+</html>

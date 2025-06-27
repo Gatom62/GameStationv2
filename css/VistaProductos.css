@@ -1,0 +1,68 @@
+body {
+    background-color: #0b153d;
+    color: white;
+}
+
+.navbar,
+.footer {
+    background-color: #0d1b4c;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1020; /* Asegura que esté por encima de otros elementos */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Opcional: sombra para mejor visibilidad */
+    transition: all 0.3s ease; /* Suaviza cualquier cambio */
+}
+
+.btn-category {
+    background: linear-gradient(to bottom, #2241d4, #102296);
+    color: white;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: 2px solid #1d3ccf;
+    transition: all 0.3s ease;
+}
+
+.btn-category:hover {
+    background: linear-gradient(to bottom, #2f54f0, #1930a5);
+    transform: scale(1.05);
+}
+
+.card {
+    background-color: #11225e;
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(38, 70, 248, 0.5);
+}
+
+.section-title {
+    border-left: 5px solid #2c6aff;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.footer {
+    padding: 20px 0;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .carousel-inner img {
+        height: 200px;
+    }
+}

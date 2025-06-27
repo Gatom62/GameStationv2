@@ -1,0 +1,182 @@
+* {
+    text-align: center;
+}
+
+.btnAgregar {
+    /*El boton queda "flotante" encima del contenido*/
+    position: fixed;
+    border-radius: 50%;
+
+    bottom: 30px;
+    /*Desde abajo*/
+    right: 40px;
+    /*Desde la derecha*/
+    width: 70px;
+    height: 65px;
+
+    background-color: #086386;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
+
+    /*Color del icono*/
+    color: white;
+    border: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    /*Para que el boton quede encima de todo*/
+}
+
+/*Estilo del botom cuando el usuario le ponga el mause ensima*/
+.btnAgregar:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.3);
+    background-color: #444343;
+    box-shadow: 0 2px 15px 0 rgba(63, 62, 62, 0.3);
+    transform: scale(1.2);
+}
+
+/*Estilo general de la tabla*/
+.tabla_scroll {
+    overflow: auto;
+}
+
+h3 {
+    text-align: center;
+}
+
+/*Para hacer mas pequeño el contenedor principal*/
+.tabla_container {
+    margin: 0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Para el volado que carga imagenes*/
+.image-upload-container {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+    margin-bottom: 20px;
+    /* Centrar todo el contenido del contenedor */
+    text-align: center;
+}
+
+.img-thumbnail {
+    border: 2px dashed #dee2e6;
+    transition: all 0.3s ease;
+    /* Centrar la imagen */
+    display: block;
+    margin: 0 auto;
+    /* Para centrar el contenido dentro de la imagen */
+    object-position: center;
+}
+
+.img-thumbnail:hover {
+    border-color: #0d6efd;
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.invalid-feedback {
+    display: block;
+    color: #dc3545;
+    font-weight: 500;
+}
+
+#clearImageBtn {
+    border-color: #6c757d;
+}
+
+#clearImageBtn:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+h1 {
+    color: #495057;
+    margin-bottom: 30px;
+}
+
+/* Imágenes en la tabla */
+table img {
+    width: 60px;
+    min-width: 90px;
+    height: 50px;
+    min-height: 60px;
+    object-fit:cover;
+    border-radius: 4px;
+}
+
+/* Centrar contenido de la tabla */
+#tabla {
+    width: 100%;
+}
+
+#tabla th, 
+#tabla td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 8px;
+}
+
+/* Asegurar que las imágenes en la tabla estén centradas */
+#tabla td img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Estilo para los botones de acciones */
+#tabla .btn {
+    margin: 2px;
+    white-space: nowrap; /* Evitar que el texto de los botones se divida en varias líneas */
+}
+
+/* Estilo para los precios (precio original y con descuento) */
+#tabla .precios {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+#tabla .precio-original {
+    text-decoration: line-through;
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+#tabla .precio-descuento {
+    font-weight: bold;
+    color: #dc3545;
+    font-size: 1.1em;
+}
